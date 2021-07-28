@@ -1,23 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-
+import PhoneForm from './Components/PhoneForm'
+import { useState } from 'react';
+import Modal from './Components/Modal';
 function App() {
+  const [error,setError]=useState(false);
+  const hideErrorHandler=()=>{
+    setError(false);
+  }
+  const showErrorHandler=()=>{
+    setError(true);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {error && <Modal onClose={hideErrorHandler} ></Modal>}
+      <PhoneForm onChange={showErrorHandler}></PhoneForm>
     </div>
   );
 }
